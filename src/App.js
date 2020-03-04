@@ -116,6 +116,13 @@ App = {
     window.location.reload()
   },
 
+  markPresent: async () => {
+    App.setLoading(true)
+    const name = $('#name').val()
+    await App.todoList.markPresent(name)
+    window.location.reload()
+  },
+
   toggleCompleted: async (e) => {
     App.setLoading(true)
     const taskId = e.target.name
