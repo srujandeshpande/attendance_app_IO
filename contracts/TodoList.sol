@@ -19,12 +19,17 @@ contract TodoList {
 
 
   constructor() public {
-    createTask("Srujan aka the SME");
+    //createTask("Srujan aka the SME");
   }
 
-  function createTask(string memory _name) public {
-    studCount ++;
+  function markPresent(string memory _name) public {
     address studAddress = msg.sender;
+    for(uint i = 1;i<=studCount;i++) {
+      if(tasks[i].studAddress == studAddress) {
+        return;
+      }
+    }
+    studCount ++;
     tasks[studCount] = Task(studCount, _name, studAddress);
     emit TaskCreated(studCount, _name, studAddress);
   }
