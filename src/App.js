@@ -103,6 +103,14 @@ App = {
   },
 
   markPresent: async () => {
+    const studCount = await App.todoList.studCount()
+    for (var i = 1; i <= studCount; i++) {
+      const task = await App.todoList.tasks(i)
+      if(task[2] == App.account) {
+        alert("Attendance already given from this account")
+        return;
+      }
+    }
     App.setLoading(true)
     const name = $('#name').val()
     await App.todoList.markPresent(name)
