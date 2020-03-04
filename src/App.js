@@ -108,6 +108,7 @@ App = {
       const task = await App.todoList.tasks(i)
       if(task[2] == App.account) {
         alert("Attendance already given from this account")
+        window.location.reload()
         return;
       }
     }
