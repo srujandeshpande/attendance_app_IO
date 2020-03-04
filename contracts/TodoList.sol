@@ -25,8 +25,8 @@ contract TodoList {
   function createTask(string memory _name) public {
     studCount ++;
     address studAddress = msg.sender;
-    tasks[studCount] = Task(studCount, _name, studAddress, false);
-    emit TaskCreated(studCount, _name, studAddress, false);
+    tasks[studCount] = Task(studCount, _name, studAddress);
+    emit TaskCreated(studCount, _name, studAddress);
   }
 
 }
