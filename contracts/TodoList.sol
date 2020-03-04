@@ -7,6 +7,7 @@ contract TodoList {
     uint id;
     string name;
     address studAddress;
+    string date;
   }
 
   mapping(uint => Task) public tasks;
@@ -14,7 +15,8 @@ contract TodoList {
   event TaskCreated(
     uint id,
     string name,
-    address studAddress
+    address studAddress,
+    string date
   );
 
 
@@ -22,16 +24,11 @@ contract TodoList {
     //createTask("Srujan aka the SME");
   }
 
-  function markPresent(string memory _name) public {
+  function markPresent(string memory _name, string memory _date) public {
     address studAddress = msg.sender;
-    for(uint i = 1;i<=studCount;i++) {
-      if(tasks[i].studAddress == studAddress) {
-        return;
-      }
-    }
     studCount ++;
-    tasks[studCount] = Task(studCount, _name, studAddress);
-    emit TaskCreated(studCount, _name, studAddress);
+    tasks[studCount] = Task(studCount, _name, studAddress, _date);
+    emit TaskCreated(studCount, _name, studAddress, _date);
   }
 
 }

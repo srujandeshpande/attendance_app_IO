@@ -88,11 +88,13 @@ App = {
       const taskId = task[0].toNumber()
       const name = task[1]
       const address = task[2]
+      const date = task[3]
 
       // Create the html for the task
       const $newTaskTemplate = $taskTemplate.clone()
       $newTaskTemplate.find('.name').html(name)
       $newTaskTemplate.find('.address').html(address)
+      $newTaskTemplate.find('.date').html(date)
 
       // Put the task in the correct list
       $('#taskList').append($newTaskTemplate)
@@ -103,18 +105,22 @@ App = {
   },
 
   markPresent: async () => {
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     const studCount = await App.todoList.studCount()
+
     for (var i = 1; i <= studCount; i++) {
       const task = await App.todoList.tasks(i)
-      if(task[2] == App.account) {
-        alert("Attendance already given from this account")
+      if(task[2] == App.account && task[3] == date) {
+        alert("Attendance already given for today")
         window.location.reload()
         return;
       }
     }
+
     App.setLoading(true)
     const name = $('#name').val()
-    await App.todoList.markPresent(name)
+    await App.todoList.markPresent(name,date)
     window.location.reload()
   },
 
