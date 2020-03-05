@@ -1,5 +1,5 @@
 {
-  "name": "eth-todo-list",
+  "name": "attendance-app",
   "version": "1.0.0",
   "description": "Attendance App for IO",
   "main": "truffle-config.js",
