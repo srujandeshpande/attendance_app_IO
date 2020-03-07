@@ -84,7 +84,7 @@ App = {
     // Render out each attendance with a new attendance template
     for (var i = 1; i <= studCount; i++) {
       // Fetch the attendance data from the blockchain
-      const at = await App.todoList.tasks(i)
+      const at = await App.todoList.atlist(i)
       const atId = at[0].toNumber()
       const name = at[1]
       const address = at[2]
@@ -110,7 +110,7 @@ App = {
     const studCount = await App.todoList.studCount()
 
     for (var i = 1; i <= studCount; i++) {
-      const at = await App.todoList.tasks(i)
+      const at = await App.todoList.atlist(i)
       if(at[2] == App.account && at[3] == date) {
         alert("Attendance already given for today")
         window.location.reload()

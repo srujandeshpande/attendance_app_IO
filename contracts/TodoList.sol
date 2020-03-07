@@ -3,14 +3,14 @@ pragma solidity ^0.5.0;
 contract TodoList {
   uint public studCount = 0;
 
-  struct Task {
+  struct AtData {
     uint id;
     string name;
     address studAddress;
     string date;
   }
 
-  mapping(uint => Task) public tasks;
+  mapping(uint => AtData) public atlist;
 
   event AttendanceMarked(
     uint id,
@@ -21,13 +21,12 @@ contract TodoList {
 
 
   constructor() public {
-    //createTask("Srujan aka the SME");
   }
 
   function markPresent(string memory _name, string memory _date) public {
     address studAddress = msg.sender;
     studCount ++;
-    tasks[studCount] = Task(studCount, _name, studAddress, _date);
+    atlist[studCount] = AtData(studCount, _name, studAddress, _date);
     emit AttendanceMarked(studCount, _name, studAddress, _date);
   }
 
