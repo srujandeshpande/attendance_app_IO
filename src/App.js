@@ -49,12 +49,12 @@ App = {
 
   loadContract: async () => {
     // Create a JavaScript version of the smart contract
-    const todoList = await $.getJSON('TodoList.json')
-    App.contracts.TodoList = TruffleContract(todoList)
-    App.contracts.TodoList.setProvider(App.web3Provider)
+    const attendanceApp = await $.getJSON('AttendanceApp.json')
+    App.contracts.AttendanceApp = TruffleContract(attendanceApp)
+    App.contracts.AttendanceApp.setProvider(App.web3Provider)
 
     // Hydrate the smart contract with values from the blockchain
-    App.todoList = await App.contracts.TodoList.deployed()
+    App.attendanceApp = await App.contracts.AttendanceApp.deployed()
   },
 
   render: async () => {
@@ -78,13 +78,13 @@ App = {
 
   renderAttendance: async () => {
     // Load the total attendance count from the blockchain
-    const studCount = await App.todoList.studCount()
+    const studCount = await App.attendanceApp.studCount()
     const $attendanceTemplate = $('.attendanceTemplate')
 
     // Render out each attendance with a new attendance template
     for (var i = 1; i <= studCount; i++) {
       // Fetch the attendance data from the blockchain
-      const at = await App.todoList.atlist(i)
+      const at = await App.attendanceApp.atlist(i)
       const atId = at[0].toNumber()
       const name = at[1]
       const address = at[2]
@@ -107,10 +107,10 @@ App = {
   markPresent: async () => {
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    const studCount = await App.todoList.studCount()
+    const studCount = await App.attendanceApp.studCount()
 
     for (var i = 1; i <= studCount; i++) {
-      const at = await App.todoList.atlist(i)
+      const at = await App.attendanceApp.atlist(i)
       if(at[2] == App.account && at[3] == date) {
         alert("Attendance already given for today")
         window.location.reload()
@@ -120,7 +120,7 @@ App = {
 
     App.setLoading(true)
     const name = $('#name').val()
-    await App.todoList.markPresent(name,date)
+    await App.attendanceApp.markPresent(name,date)
     window.location.reload()
   },
 

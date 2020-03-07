@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-contract TodoList {
+contract AttendanceApp {
   uint public studCount = 0;
 
   struct AtData {
