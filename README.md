@@ -25,3 +25,5 @@ Get back to the `attendance_app_IO` folder
 ## Installing Node Modules
 Run the command `npm install`.
 This might take a while.
+
+## Don't try to run the app yet. Some crucial files are still missing which we will create in class.
