@@ -4,8 +4,8 @@ Welcome to the Attendance app for the PESU IO Course "Introduction to Blockchain
 ## Make sure you have everything installed!
 Go through the [installation instructions](https://github.com/srujandeshpande/attendance_app_IO/blob/master/installations.md) and make sure you've got everything set.
 
-## Clone the Repo
-If you have git, clone this repo. If you don't have git, download the zip.
+## Download the files
+If you have git, fork/clone this repo. If you don't have git, download the zip.
 
 ## Navigate to the downloaded/cloned repository
 Do this on command line (terminal or command prompt)
