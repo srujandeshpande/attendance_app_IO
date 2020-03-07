@@ -19,8 +19,8 @@ contract AttendanceApp {
     string date
   );
 
-
   constructor() public {
+    // Can make the constructor do something here.
   }
 
   function markPresent(string memory _name, string memory _date) public {
