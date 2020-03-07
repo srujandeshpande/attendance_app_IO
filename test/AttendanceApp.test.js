@@ -13,32 +13,16 @@ contract('AttendanceApp', (accounts) => {
     assert.notEqual(address, undefined)
   })
 
-  it('lists tasks', async () => {
-    const taskCount = await this.attendanceApp.taskCount()
-    const task = await this.attendanceApp.tasks(taskCount)
-    assert.equal(task.id.toNumber(), taskCount.toNumber())
-    assert.equal(task.content, 'Check out dappuniversity.com')
-    assert.equal(task.completed, false)
-    assert.equal(taskCount.toNumber(), 1)
-  })
-
-  it('creates tasks', async () => {
-    const result = await this.attendanceApp.createTask('A new task')
-    const taskCount = await this.attendanceApp.taskCount()
-    assert.equal(taskCount, 2)
-    const event = result.logs[0].args
-    assert.equal(event.id.toNumber(), 2)
-    assert.equal(event.content, 'A new task')
-    assert.equal(event.completed, false)
-  })
-
-  it('toggles task completion', async () => {
-    const result = await this.attendanceApp.toggleCompleted(1)
-    const task = await this.attendanceApp.tasks(1)
-    assert.equal(task.completed, true)
+  it('marks attendance', async () => {
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    const result = await this.attendanceApp.markPresent('Test Name',date)
+    const studCount = await this.attendanceApp.studCount()
+    assert.equal(studCount, 1)
     const event = result.logs[0].args
     assert.equal(event.id.toNumber(), 1)
-    assert.equal(event.completed, true)
+    assert.equal(event.name, 'Test Name')
+    assert.equal(event.date, date)
   })
 
 })
