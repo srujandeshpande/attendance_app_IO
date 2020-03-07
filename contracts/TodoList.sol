@@ -12,7 +12,7 @@ contract TodoList {
 
   mapping(uint => Task) public tasks;
 
-  event TaskCreated(
+  event AttendanceMarked(
     uint id,
     string name,
     address studAddress,
@@ -28,7 +28,7 @@ contract TodoList {
     address studAddress = msg.sender;
     studCount ++;
     tasks[studCount] = Task(studCount, _name, studAddress, _date);
-    emit TaskCreated(studCount, _name, studAddress, _date);
+    emit AttendanceMarked(studCount, _name, studAddress, _date);
   }
 
 }

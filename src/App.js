@@ -69,38 +69,38 @@ App = {
     // Render Account
     $('#account').html(App.account)
 
-    // Render Tasks
-    await App.renderTasks()
+    // Render Attendance
+    await App.renderAttendance()
 
     // Update loading state
     App.setLoading(false)
   },
 
-  renderTasks: async () => {
-    // Load the total task count from the blockchain
+  renderAttendance: async () => {
+    // Load the total attendance count from the blockchain
     const studCount = await App.todoList.studCount()
-    const $taskTemplate = $('.taskTemplate')
+    const $attendanceTemplate = $('.attendanceTemplate')
 
-    // Render out each task with a new task template
+    // Render out each attendance with a new attendance template
     for (var i = 1; i <= studCount; i++) {
-      // Fetch the task data from the blockchain
-      const task = await App.todoList.tasks(i)
-      const taskId = task[0].toNumber()
-      const name = task[1]
-      const address = task[2]
-      const date = task[3]
+      // Fetch the attendance data from the blockchain
+      const at = await App.todoList.tasks(i)
+      const atId = at[0].toNumber()
+      const name = at[1]
+      const address = at[2]
+      const date = at[3]
 
-      // Create the html for the task
-      const $newTaskTemplate = $taskTemplate.clone()
-      $newTaskTemplate.find('.name').html(name)
-      $newTaskTemplate.find('.address').html(address)
-      $newTaskTemplate.find('.date').html(date)
+      // Create the html for the attendance
+      const $newattendanceTemplate = $attendanceTemplate.clone()
+      $newattendanceTemplate.find('.name').html(name)
+      $newattendanceTemplate.find('.address').html(address)
+      $newattendanceTemplate.find('.date').html(date)
 
-      // Put the task in the correct list
-      $('#taskList').append($newTaskTemplate)
+      // Put the attendance in the correct list
+      $('#attendanceList').append($newattendanceTemplate)
 
-      // Show the task
-      $newTaskTemplate.show()
+      // Show the attendance
+      $newattendanceTemplate.show()
     }
   },
 
@@ -110,8 +110,8 @@ App = {
     const studCount = await App.todoList.studCount()
 
     for (var i = 1; i <= studCount; i++) {
-      const task = await App.todoList.tasks(i)
-      if(task[2] == App.account && task[3] == date) {
+      const at = await App.todoList.tasks(i)
+      if(at[2] == App.account && at[3] == date) {
         alert("Attendance already given for today")
         window.location.reload()
         return;
