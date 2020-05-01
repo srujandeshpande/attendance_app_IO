@@ -1830,6 +1830,44 @@
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {
+        "0x97e7e4dafa124469c932fb6ebcf8a4f43500f45a2a4c67515a60f16e72ef5b9a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "studAddress",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "date",
+              "type": "string"
+            }
+          ],
+          "name": "AttendanceMarked",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x6556F96565E798bEB03a90094E5a392cD371dD1E",
+      "transactionHash": "0x92677394460a418946a0b40b0c7f90656bd1a3bf4e4d2203c8d2d63cddf3098d"
+    },
     "5777": {
       "events": {
         "0x97e7e4dafa124469c932fb6ebcf8a4f43500f45a2a4c67515a60f16e72ef5b9a": {
@@ -1870,7 +1908,7 @@
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-01T17:33:42.876Z",
+  "updatedAt": "2020-05-01T18:24:09.532Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
