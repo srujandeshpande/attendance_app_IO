@@ -52,6 +52,7 @@ App = {
     const attendanceApp = await $.getJSON('AttendanceApp.json')
     App.contracts.AttendanceApp = TruffleContract(attendanceApp)
     App.contracts.AttendanceApp.setProvider(App.web3Provider)
+    //console.log(App.web3Provider)
 
     // Hydrate the smart contract with values from the blockchain
     App.attendanceApp = await App.contracts.AttendanceApp.deployed()
